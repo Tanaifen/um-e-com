@@ -76,4 +76,4 @@ trust_features = st.multiselect("Q10. What features would increase your trust in
 additional_comments = st.text_area("Q11. (Optional) Any additional comments or suggestions to improve online shopping?")
 
 if st.button("Submit Survey"):
-    st.success("✅ Thank you for your response! Your feedback has been recorde
+    st.success("✅ Thank you for your response! Your feedback has been recorded.")

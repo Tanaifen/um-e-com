@@ -23,14 +23,11 @@ This survey is conducted as part of the research project titled:
 The purpose of this study is to evaluate the factors influencing online shopping satisfaction, understand user perceptions, identify barriers to adoption, and gather suggestions to improve the online shopping experience.
 
 **Tan Ai Fen (22115538)**
-###
 **Postgraduate Student**
-###
 **Faculty of Computer Science and Information Technology**
 **University of Malaya**
 
 Your responses will be kept confidential and used solely for academic purposes.
-###
 Thank you for your valuable input!
 
 ---
@@ -43,7 +40,7 @@ gender = st.radio("Gender:", ["Male", "Female", "Prefer not to say", "Other"])
 shop_freq = st.radio("How often do you shop online?", ["Daily", "Weekly", "Monthly", "Rarely", "Never"])
 
 # Section 2: User Perception & Value
-st.header("Section 2: User Perception & Value (Objective a)")
+st.header("Section 2: User Perception & Value")
 satisfaction = st.slider("Q1. How satisfied are you with your overall online shopping experience?", 1, 5)
 value_factors = st.multiselect("Q2. What do you value most in online shopping?",
     ["Price", "Product quality", "Fast delivery", "Easy return policy",
@@ -54,7 +51,7 @@ tech_issues = st.radio("Q4. How often do technical issues affect your experience
                        ["Very Often", "Sometimes", "Rarely", "Never"])
 
 # Section 3: Barriers & Non-Adoption
-st.header("Section 3: Barriers & Non-Adoption (Objective b)")
+st.header("Section 3: Barriers & Non-Adoption")
 avoid_online = st.radio("Q5. Have you ever avoided buying online despite the product being available?", ["Yes", "No"])
 avoid_reasons = []
 if avoid_online == "Yes":
@@ -66,7 +63,7 @@ barriers = st.multiselect("Q6. What prevents you from shopping online more often
 trust_payment = st.slider("Q7. How much do you trust online payment systems?", 1, 5)
 
 # Section 4: Suggestions
-st.header("Section 4: Improvement & Suggestions (Objective c)")
+st.header("Section 4: Improvement & Suggestions")
 encouragement = st.multiselect("Q8. What would encourage you to shop more online? (Choose top 3)",
     ["Faster shipping", "Better return process", "Lower prices", "Live chat/help",
      "Verified reviews", "Secure payment options"])

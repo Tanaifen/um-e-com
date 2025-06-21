@@ -22,12 +22,16 @@ This survey is conducted as part of the research project titled:
 
 The purpose of this study is to evaluate the factors influencing online shopping satisfaction, understand user perceptions, identify barriers to adoption, and gather suggestions to improve the online shopping experience.
 
-**Researcher:** Tan Ai Fen (22115538)
+**Tan Ai Fen (22115538)**
+###
 **Postgraduate Student**
-Faculty of Computer Science and Information Technology
+###
+**Faculty of Computer Science and Information Technology**
 **University of Malaya**
 
-Your responses will be kept confidential and used solely for academic purposes. Thank you for your valuable input!
+Your responses will be kept confidential and used solely for academic purposes.
+###
+Thank you for your valuable input!
 
 ---
 """)
@@ -72,4 +76,4 @@ trust_features = st.multiselect("Q10. What features would increase your trust in
 additional_comments = st.text_area("Q11. (Optional) Any additional comments or suggestions to improve online shopping?")
 
 if st.button("Submit Survey"):
-    st.success("✅ Thank you for your response! Your feedback has been recorded.")
+    st.success("✅ Thank you for your response! Your feedback has been recorde

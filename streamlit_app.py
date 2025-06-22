@@ -9,106 +9,150 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
-from datetime import datetime
 import os
+from datetime import datetime
+
+# Load admin password from secrets or fallback
+ADMIN_PASSWORD = st.secrets["general"].get("admin_pass", "admin123")
 
 # Page config
 st.set_page_config(page_title="E-Commerce Survey", layout="centered")
-st.title("🛒 E-Commerce Efficiency & Satisfaction Survey 🛒")
 
-# Introduction
-st.markdown("""
-### 🎓 Survey Introduction
+# Navigation
+st.sidebar.title("📋 Navigation")
+page = st.sidebar.radio("Go to", ["📝 Fill Survey", "📊 Admin Dashboard"])
 
-This survey is conducted as part of the research project titled:
-**"Quantitative Evaluation of E-Commerce Efficiency and Customer Satisfaction Using Machine Learning Techniques."**
+# ---- SURVEY PAGE ----
+if page == "📝 Fill Survey":
+    st.title("🛒 E-Commerce Efficiency & Satisfaction Survey 🛒")
 
-The purpose of this study is to evaluate the factors influencing online shopping satisfaction, understand user perceptions, identify barriers to adoption, and gather suggestions to improve the online shopping experience.
+    # Introduction
+    st.markdown("""
+    ### 🎓 Survey Introduction
+    This survey is part of the research project titled:
+    **"Quantitative Evaluation of E-Commerce Efficiency and Customer Satisfaction Using Machine Learning Techniques."**
 
-Your responses will be kept confidential and used solely for academic purposes.
-Thank you for your valuable input!
-""")
+    The purpose of this study is to evaluate the factors influencing online shopping satisfaction, understand user perceptions, identify barriers to adoption, and gather suggestions to improve the online shopping experience.
 
-# Researcher details
-st.markdown("""
-**Tan Ai Fen (22115538)**<br>
-**Postgraduate Student**<br>
-**Faculty of Computer Science and Information Technology**<br>
-**University of Malaya**
-""", unsafe_allow_html=True)
+    Your responses will be kept confidential and used solely for academic purposes. Thank you for your valuable input!
+    """)
 
-st.markdown("---")
+    st.markdown("""
+    **Tan Ai Fen (22115538)**<br>
+    **Postgraduate Student**<br>
+    **Faculty of Computer Science and Information Technology**<br>
+    **University of Malaya**
+    """, unsafe_allow_html=True)
 
-# Section 1: Basic Information
-st.header("Section 1: Basic Information")
-age = st.selectbox("Age:", ["<18", "18–25", "26–35", "36–50", "50+"])
-gender = st.radio("Gender:", ["Male", "Female", "Prefer not to say", "Other"])
-shop_freq = st.radio("How often do you shop online?", ["Daily", "Weekly", "Monthly", "Rarely", "Never"])
+    st.markdown("---")
 
-# Section 2: User Perception & Value
-st.header("Section 2: User Perception & Value")
-satisfaction = st.slider("Q1. How satisfied are you with your overall online shopping experience?", 1, 10)
-value_factors = st.multiselect("Q2. What do you value most in online shopping?",
-    ["Price", "Product quality", "Fast delivery", "Easy return policy",
-     "Good customer service", "Secure payment", "Easy-to-use website/app"])
-time_saving = st.radio("Q3. Online shopping saves me time and effort.",
-                       ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"])
-tech_issues = st.radio("Q4. How often do technical issues affect your experience?",
-                       ["Very Often", "Sometimes", "Rarely", "Never"])
+    # Section 1: Basic Information
+    st.header("Section 1: Basic Information")
+    age = st.selectbox("Age:", ["<18", "18–25", "26–35", "36–50", "50+"])
+    gender = st.radio("Gender:", ["Male", "Female", "Prefer not to say", "Other"])
+    shop_freq = st.radio("How often do you shop online?", ["Daily", "Weekly", "Monthly", "Rarely", "Never"])
 
-# Section 3: Barriers & Non-Adoption
-st.header("Section 3: Barriers & Non-Adoption")
-avoid_online = st.radio("Q5. Have you ever avoided buying online despite the product being available?", ["Yes", "No"])
-avoid_reasons = []
-if avoid_online == "Yes":
-    avoid_reasons = st.multiselect("If YES, why?",
-        ["Trust issues", "Prefer in-store", "Complicated process", "Delivery takes too long", "Payment issues"])
-barriers = st.multiselect("Q6. What prevents you from shopping online more often?",
-    ["Hidden costs", "Lack of trust", "Long delivery time",
-     "Prefer to see the item", "Poor customer service"])
-trust_payment = st.slider("Q7. How much do you trust online payment systems?", 1, 10)
+    # Section 2: User Perception & Value
+    st.header("Section 2: User Perception & Value")
+    satisfaction = st.slider("Q1. How satisfied are you with your overall online shopping experience?", 1, 10)
+    value_factors = st.multiselect("Q2. What do you value most in online shopping?",
+        ["Price", "Product quality", "Fast delivery", "Easy return policy",
+         "Good customer service", "Secure payment", "Easy-to-use website/app"])
+    time_saving = st.radio("Q3. Online shopping saves me time and effort.",
+                           ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"])
+    tech_issues = st.radio("Q4. How often do technical issues affect your experience?",
+                           ["Very Often", "Sometimes", "Rarely", "Never"])
 
-# Section 4: Improvement & Suggestions
-st.header("Section 4: Improvement & Suggestions")
-encouragement = st.multiselect("Q8. What would encourage you to shop more online? (Choose top 3)",
-    ["Faster shipping", "Better return process", "Lower prices", "Live chat/help",
-     "Verified reviews", "Secure payment options"])
-recommendation = st.slider("Q9. On a scale of 0–10, how likely are you to recommend online shopping to a friend?", 0, 10)
-trust_features = st.multiselect("Q10. What features would increase your trust in an online store?",
-    ["Seller ratings", "Return centers", "Secure checkout", "Verified reviews"])
-additional_comments = st.text_area("Q11. (Optional) Any additional comments or suggestions to improve online shopping?")
+    # Section 3: Barriers & Non-Adoption
+    st.header("Section 3: Barriers & Non-Adoption")
+    avoid_online = st.radio("Q5. Have you ever avoided buying online despite the product being available?", ["Yes", "No"])
+    avoid_reasons = []
+    if avoid_online == "Yes":
+        avoid_reasons = st.multiselect("If YES, why?",
+            ["Trust issues", "Prefer in-store", "Complicated process", "Delivery takes too long", "Payment issues"])
+    barriers = st.multiselect("Q6. What prevents you from shopping online more often?",
+        ["Hidden costs", "Lack of trust", "Long delivery time",
+         "Prefer to see the item", "Poor customer service"])
+    trust_payment = st.slider("Q7. How much do you trust online payment systems?", 1, 10)
 
-# Submit and Save Responses
-if st.button("Submit Survey"):
-    st.success("✅ Thank you for your response! Your feedback has been recorded.")
-    st.session_state["refresh_form"] = True
+    # Section 4: Suggestions
+    st.header("Section 4: Improvement & Suggestions")
+    encouragement = st.multiselect("Q8. What would encourage you to shop more online? (Choose top 3)",
+        ["Faster shipping", "Better return process", "Lower prices", "Live chat/help",
+         "Verified reviews", "Secure payment options"])
+    recommendation = st.slider("Q9. On a scale of 0–10, how likely are you to recommend online shopping to a friend?", 0, 10)
+    trust_features = st.multiselect("Q10. What features would increase your trust in an online store?",
+        ["Seller ratings", "Return centers", "Secure checkout", "Verified reviews"])
+    additional_comments = st.text_area("Q11. (Optional) Any additional comments or suggestions to improve online shopping?")
 
-    # Collect data into a dictionary
-    response_data = {
-        "timestamp": datetime.now(),
-        "age": age,
-        "gender": gender,
-        "shop_freq": shop_freq,
-        "satisfaction": satisfaction,
-        "value_factors": ', '.join(value_factors),
-        "time_saving": time_saving,
-        "tech_issues": tech_issues,
-        "avoid_online": avoid_online,
-        "avoid_reasons": ', '.join(avoid_reasons) if avoid_online == "Yes" else "",
-        "barriers": ', '.join(barriers),
-        "trust_payment": trust_payment,
-        "encouragement": ', '.join(encouragement),
-        "recommendation": recommendation,
-        "trust_features": ', '.join(trust_features),
-        "comments": additional_comments
-    }
+    if st.button("Submit Survey"):
+        st.success("✅ Thank you for your response! Your feedback has been recorded.")
+        response_data = {
+            "timestamp": datetime.now(),
+            "age": age,
+            "gender": gender,
+            "shop_freq": shop_freq,
+            "satisfaction": satisfaction,
+            "value_factors": ', '.join(value_factors),
+            "time_saving": time_saving,
+            "tech_issues": tech_issues,
+            "avoid_online": avoid_online,
+            "avoid_reasons": ', '.join(avoid_reasons) if avoid_online == "Yes" else "",
+            "barriers": ', '.join(barriers),
+            "trust_payment": trust_payment,
+            "encouragement": ', '.join(encouragement),
+            "recommendation": recommendation,
+            "trust_features": ', '.join(trust_features),
+            "comments": additional_comments
+        }
+        df = pd.DataFrame([response_data])
+        df.to_csv("responses.csv", mode="a", index=False, header=not os.path.exists("responses.csv"))
 
-    # Save to CSV (append mode)
-    df = pd.DataFrame([response_data])
-    file_exists = os.path.exists("responses.csv")
-    df.to_csv("responses.csv", mode="a", index=False, header=not file_exists)
+# ---- ADMIN DASHBOARD ----
+elif page == "📊 Admin Dashboard":
+    st.title("🔐 Admin Dashboard")
+    password_input = st.text_input("Enter admin password to access:", type="password")
 
-# Refresh form after submission
-#if st.session_state.get("refresh_form"):
-#    st.session_state["refresh_form"] = False
-#    st.rerun()
+    if password_input != ADMIN_PASSWORD:
+        st.warning("Please enter the correct password to view the dashboard.")
+        st.stop()
+
+    if not os.path.exists("responses.csv"):
+        st.warning("No responses yet. Ask users to submit the survey first.")
+        st.stop()
+
+    df = pd.read_csv("responses.csv")
+    st.success(f"Loaded {len(df)} responses.")
+
+    # Filters
+    with st.expander("🔍 Filter Options"):
+        age_filter = st.multiselect("Filter by Age", df['age'].unique())
+        gender_filter = st.multiselect("Filter by Gender", df['gender'].unique())
+        if age_filter:
+            df = df[df['age'].isin(age_filter)]
+        if gender_filter:
+            df = df[df['gender'].isin(gender_filter)]
+
+    # Summary
+    st.subheader("🧮 Summary Stats")
+    st.dataframe(df.describe(include='all'))
+
+    # Visualization
+    st.subheader("📊 Charts")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("**Shopping Frequency**")
+        st.bar_chart(df['shop_freq'].value_counts())
+
+    with col2:
+        st.markdown("**Satisfaction Ratings**")
+        st.bar_chart(df['satisfaction'].value_counts().sort_index())
+
+    st.markdown("**Net Promoter Score (Q9)**")
+    st.line_chart(df['recommendation'].value_counts().sort_index())
+
+    # Download
+    st.markdown("---")
+    st.subheader("📥 Download Data")
+    st.download_button("Download as CSV", data=df.to_csv(index=False), file_name="ecommerce_responses.csv")

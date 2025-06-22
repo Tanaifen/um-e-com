@@ -113,7 +113,7 @@ if mode == "📋 Take Survey":
         df.to_csv(CSV_FILE, mode='a', index=False, header=not file_exists)
 
         st.success("✅ Thank you for your response! Your feedback has been recorded.")
-        st.experimental_rerun()
+        st.rerun()
 
 # -- Admin Dashboard --
 elif mode == "🔐 Admin Dashboard":

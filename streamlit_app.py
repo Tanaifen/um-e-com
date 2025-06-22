@@ -7,7 +7,6 @@
 #    https://colab.research.google.com/gist/Tanaifen/0e6b7451fe081e2c3c841e6fa2beb8dc/streamlit_app-py.ipynb
 #"""
 
-pip install gspread oauth2client
 import streamlit as st
 import pandas as pd
 from datetime import datetime

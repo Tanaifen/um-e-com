@@ -81,6 +81,6 @@ if st.button("Submit Survey"):
     st.session_state["refresh_form"] = True
 
 # Safe rerun using updated method (Streamlit ≥ v1.30)
-if st.session_state.get("refresh_form"):
-    st.session_state["refresh_form"] = False
-    st.rerun()  # Correct replacement for deprecated experimental_rerun
+#if st.session_state.get("refresh_form"):
+#    st.session_state["refresh_form"] = False
+#    st.rerun()  # Correct replacement for deprecated experimental_rerun

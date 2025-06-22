@@ -79,7 +79,8 @@ additional_comments = st.text_area("Q11. (Optional) Any additional comments or s
 if st.button("Submit Survey"):
     st.success("✅ Thank you for your response! Your feedback has been recorded.")
     st.session_state["refresh_form"] = True
-
+    st.rerun()
+    
 # Safe rerun using updated method (Streamlit ≥ v1.30)
 #if st.session_state.get("refresh_form"):
 #    st.session_state["refresh_form"] = False

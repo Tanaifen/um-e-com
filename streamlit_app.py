@@ -22,10 +22,12 @@ This survey is conducted as part of the research project titled:
 
 The purpose of this study is to evaluate the factors influencing online shopping satisfaction, understand user perceptions, identify barriers to adoption, and gather suggestions to improve the online shopping experience.
 
-**Tan Ai Fen (22115538)**
-**Postgraduate Student**
-**Faculty of Computer Science and Information Technology**
+st.markdown("""
+**Tan Ai Fen (22115538)**<br>
+**Postgraduate Student**<br>
+**Faculty of Computer Science and Information Technology**<br>
 **University of Malaya**
+""", unsafe_allow_html=True)
 
 Your responses will be kept confidential and used solely for academic purposes.
 Thank you for your valuable input!

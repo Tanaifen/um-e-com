@@ -82,33 +82,3 @@ additional_comments = st.text_area("Q11. (Optional) Any additional comments or s
 if st.button("Submit Survey"):
     st.success("✅ Thank you for your response! Your feedback has been recorded.")
     st.session_state["refresh_form"] = True
-
-    # Collect data into a dictionary
-    response_data = {
-        "timestamp": datetime.now(),
-        "age": age,
-        "gender": gender,
-        "shop_freq": shop_freq,
-        "satisfaction": satisfaction,
-        "value_factors": ', '.join(value_factors),
-        "time_saving": time_saving,
-        "tech_issues": tech_issues,
-        "avoid_online": avoid_online,
-        "avoid_reasons": ', '.join(avoid_reasons) if avoid_online == "Yes" else "",
-        "barriers": ', '.join(barriers),
-        "trust_payment": trust_payment,
-        "encouragement": ', '.join(encouragement),
-        "recommendation": recommendation,
-        "trust_features": ', '.join(trust_features),
-        "comments": additional_comments
-    }
-
-    # Save to CSV (append mode)
-    df = pd.DataFrame([response_data])
-    file_exists = os.path.exists("responses.csv")
-    df.to_csv("responses.csv", mode="a", index=False, header=not file_exists)
-
-# Refresh form after submission
-if st.session_state.get("refresh_form"):
-    st.session_state["refresh_form"] = False
-    st.rerun()

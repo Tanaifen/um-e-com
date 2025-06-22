@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1eFDB9kkyYMHFc5jXAt7BchcQM6dYEMI6
 """
 
-pip install gspread oauth2client
 
 import streamlit as st
 import pandas as pd

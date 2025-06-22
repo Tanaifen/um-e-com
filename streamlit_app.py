@@ -26,7 +26,7 @@ Your responses will be kept confidential and used solely for academic purposes.
 Thank you for your valuable input!
 """)
 
-# Add researcher details separately
+# Researcher details
 st.markdown("""
 **Tan Ai Fen (22115538)**<br>
 **Postgraduate Student**<br>
@@ -44,7 +44,7 @@ shop_freq = st.radio("How often do you shop online?", ["Daily", "Weekly", "Month
 
 # Section 2: User Perception & Value
 st.header("Section 2: User Perception & Value")
-satisfaction = st.slider("Q1. How satisfied are you with your overall online shopping experience?", 1, 5)
+satisfaction = st.slider("Q1. How satisfied are you with your overall online shopping experience?", 1, 10)
 value_factors = st.multiselect("Q2. What do you value most in online shopping?",
     ["Price", "Product quality", "Fast delivery", "Easy return policy",
      "Good customer service", "Secure payment", "Easy-to-use website/app"])
@@ -63,7 +63,7 @@ if avoid_online == "Yes":
 barriers = st.multiselect("Q6. What prevents you from shopping online more often?",
     ["Hidden costs", "Lack of trust", "Long delivery time",
      "Prefer to see the item", "Poor customer service"])
-trust_payment = st.slider("Q7. How much do you trust online payment systems?", 1, 5)
+trust_payment = st.slider("Q7. How much do you trust online payment systems?", 1, 10)
 
 # Section 4: Suggestions
 st.header("Section 4: Improvement & Suggestions")
@@ -75,5 +75,7 @@ trust_features = st.multiselect("Q10. What features would increase your trust in
     ["Seller ratings", "Return centers", "Secure checkout", "Verified reviews"])
 additional_comments = st.text_area("Q11. (Optional) Any additional comments or suggestions to improve online shopping?")
 
+# Submit button
 if st.button("Submit Survey"):
     st.success("✅ Thank you for your response! Your feedback has been recorded.")
+    st.experimental_rerun()

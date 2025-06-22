@@ -109,6 +109,6 @@ if st.button("Submit Survey"):
     df.to_csv("responses.csv", mode="a", index=False, header=not file_exists)
 
 # Refresh form after submission
-if st.session_state.get("refresh_form"):
-    st.session_state["refresh_form"] = False
-    st.rerun()
+#if st.session_state.get("refresh_form"):
+#    st.session_state["refresh_form"] = False
+#    st.rerun()

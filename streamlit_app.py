@@ -11,7 +11,7 @@ import streamlit as st
 
 # Page config
 st.set_page_config(page_title="E-Commerce Survey", layout="centered")
-st.title("🛒 E-Commerce Efficiency & Satisfaction Survey")
+st.title("🛒 E-Commerce Efficiency & Satisfaction Survey 🛒")
 
 # Introduction
 st.markdown("""
@@ -22,6 +22,11 @@ This survey is conducted as part of the research project titled:
 
 The purpose of this study is to evaluate the factors influencing online shopping satisfaction, understand user perceptions, identify barriers to adoption, and gather suggestions to improve the online shopping experience.
 
+Your responses will be kept confidential and used solely for academic purposes.
+Thank you for your valuable input!
+""")
+
+# Add researcher details separately
 st.markdown("""
 **Tan Ai Fen (22115538)**<br>
 **Postgraduate Student**<br>
@@ -29,11 +34,7 @@ st.markdown("""
 **University of Malaya**
 """, unsafe_allow_html=True)
 
-Your responses will be kept confidential and used solely for academic purposes.
-Thank you for your valuable input!
-
----
-""")
+st.markdown("---")
 
 # Section 1: Basic Information
 st.header("Section 1: Basic Information")
